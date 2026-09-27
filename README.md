@@ -12,21 +12,22 @@ Business analytics project using SQL, Power BI, and DAX to analyze customer chur
 
 ## 📑 Table of Contents
 
-- [Overview](#-overview)
-- [Business Problem](#-business-problem)
-- [Project Objectives](#-project-objectives)
-- [Dataset Overview](#-dataset-overview)
-- [Tools & Tech Stack](#-tools--tech-stack)
-- [Methodology](#-methodology)
-- [Dashboards](#-dashboards)
-- [Key Insights](#-key-insights)
-- [Heuristic Risk Scoring Model](#-heuristic-risk-scoring-model)
-- [SQL Analysis Highlights](#-sql-analysis-highlights)
-- [Strategic Recommendations](#-strategic-recommendations)
-- [Conclusion](#-conclusion)
-- [Author](#-author)
-
+- [Overview](#overview)
+- [Business Problem](#business-problem)
+- [Project Objectives](#project-objectives)
+- [Dataset Overview](#dataset-overview)
+- [Tools & Tech Stack](#tools-tech-stack)
+- [Methodology](#methodology)
+- [Dashboards](#dashboards)
+- [Key Insights](#key-insights)
+- [Heuristic Risk Scoring Model](#risk-scoring-model)
+- [SQL Analysis Highlights](#sql-analysis-highlights)
+- [Strategic Recommendations](#strategic-recommendations)
+- [Conclusion](#conclusion)
+- [Author](#author)
 ---
+
+<a id="overview"></a>
 
 ## 📌 Overview
 
@@ -39,11 +40,15 @@ Customer retention is an important business problem in retail banking because cu
 
 The project combines **PostgreSQL** for analytical querying, **Power Query/Power BI** for data validation and modeling, **DAX** for KPI and risk-score calculations, and a 3-page primary dashboard plus 2 extended analysis pages, supported by an executive presentation.
 
+<a id="business-problem"></a>
+
 ## 🎯 Business Problem
 
 > The bank is experiencing a 20.37% customer churn rate across the analyzed portfolio. The business needs to understand which customer segments show higher observed churn, how much customer balance is associated with those exits, and where retention teams should prioritize further investigation.
 
 The analysis evaluates geography, demographics, customer activity, product ownership, and financial characteristics to identify actionable churn patterns.
+
+<a id="project-objectives"></a>
 
 ## 🎯 Project Objectives
 
@@ -55,6 +60,8 @@ The analysis evaluates geography, demographics, customer activity, product owner
 | 4 | **Churn Factor Analysis** | Analyze geography, age, activity status, and product ownership as factors associated with churn |
 | 5 | **Risk Segmentation & Scoring** | Build a transparent composite score to classify customers into Red / Amber / Green review tiers |
 | 6 | **Strategic Retention Framework** | Design a phased, targeted retention and cross-sell strategy |
+
+<a id="dataset-overview"></a>
 
 ## 🗃️ Dataset Overview
 
@@ -72,6 +79,8 @@ The data is modeled as **7 relational tables** (star-schema style) with zero mis
 
 **Target variable:** `Exited` (1 = churned, 0 = retained) · **Churn prevalence:** 20.37% · **Data quality:** validated for nulls and duplicates via Power Query. A separate review identified **735 records with `Exited = 1` and `IsActiveMember = 1`**; this combination is not inherently impossible without a defined business rule, so it should be treated as a data-quality/business-definition check rather than automatically corrected.
 
+<a id="tools-tech-stack"></a>
+
 ## 🛠️ Tools & Tech Stack
 
 | Category | Tools |
@@ -82,6 +91,8 @@ The data is modeled as **7 relational tables** (star-schema style) with zero mis
 | Reporting | **PowerPoint** (executive stakeholder deck) |
 
 
+<a id="methodology"></a>
+
 ## 🔍 Methodology
 
 1. **Business Understanding** — Framed churn as the core problem; retention improvement as the objective.
@@ -90,6 +101,8 @@ The data is modeled as **7 relational tables** (star-schema style) with zero mis
 4. **KPI & Measure Development** — Built core DAX measures: Total Customers, Churn Rate %, Avg. Balance, Avg. Credit Score, and a Heuristic Churn Risk Score.
 5. **Dashboard Reporting** — Designed a 3-page interactive Power BI dashboard (Demographics → Product Engagement → Churn Analysis) with cross-filtering slicers (Year, Location, Gender, No. of Products).
 6. **Risk Segmentation & Strategy** — Classified customers into Red/Amber/Green review tiers using a transparent heuristic score and translated the observed patterns into a phased retention roadmap.
+
+<a id="dashboards"></a>
 
 ## 📊 Dashboards
 
@@ -109,6 +122,8 @@ Examines credit card penetration (70.55%), product holding distribution, active 
 Breaks down the 20.37% churn rate by gender, location, salary bucket, tenure, and credit score, with an exit-category summary.
 
 > The `.pbix` file also contains two extended analysis pages — a **Churn Risk Scoring page** (Red/Amber/Green segmentation with balance exposure) and a **deep-dive analytics page** (LTV proxy, product affinity, seasonal acquisition trends, and combo charts) for advanced exploration. The LTV figure should be interpreted as a proxy rather than observed customer lifetime value.
+
+<a id="key-insights"></a>
 
 ## 💡 Key Insights
 
@@ -137,6 +152,8 @@ Breaks down the 20.37% churn rate by gender, location, salary bucket, tenure, an
 - Salary vs. credit score: r = -0.001
 - Tenure shows relatively limited variation in observed churn across tenure groups.
 
+<a id="risk-scoring-model"></a>
+
 ## 🚦 Heuristic Risk Scoring Model
 
 A transparent **heuristic Churn Risk Score** was built in DAX to operationalize selected observed associations into a single review metric. It is **not a statistically trained or validated predictive model**:
@@ -160,6 +177,8 @@ RiskColor =
 
 Descriptively, **Red-tier customers show about 3× the observed churn rate of Green-tier customers**. This demonstrates separation in this dataset, but it does **not validate predictive accuracy**, because no train/test split, calibration, ROC-AUC, precision/recall, or out-of-sample validation was performed. `RiskColor` is applied as conditional formatting in Power BI for prioritization and review.
 
+<a id="sql-analysis-highlights"></a>
+
 ## 🧮 SQL Analysis Highlights
 
 The `power bi task sql.sql` file contains the PostgreSQL logic behind the objective questions, including:
@@ -170,6 +189,8 @@ The `power bi task sql.sql` file contains the PostgreSQL logic behind the object
 - **Data-quality review** identifying 735 customers with `Exited = 1` **and** `IsActiveMember = 1`; the supplied SQL file should not describe this combination as logically impossible or imply that an automatic corrective update was applied
 - **No-join field derivation** using a `CASE` expression to bring `ExitCategory` into the fact table without a physical join
 
+<a id="strategic-recommendations"></a>
+
 ## ✅ Strategic Recommendations
 
 1. . **Risk-Based Customer Prioritization** — After validation, integrate the heuristic score into a CRM workflow to help relationship managers prioritize customer-review queues.
@@ -179,9 +200,14 @@ The `power bi task sql.sql` file contains the PostgreSQL logic behind the object
 5. **High-Value Customer Protection** — Prioritize retention analysis for higher-balance customer segments, given that churned customers show higher average balance exposure than retained customers.
 6. **Lifecycle & Loyalty Program** — Test milestone-based engagement using tenure as one segmentation variable; the current analysis does not establish that a specific Years 3/5/7 program or loyalty incentive will reduce churn.
 7. **Investigate High Product-Count Churn** — Audit the 3–4 product segment to understand why churn remains elevated despite higher product ownership. Review product mix, fees, customer engagement, and service experience before drawing conclusions about the underlying cause.
+
+<a id="conclusion"></a>
+
 ## 🏁 Conclusion
 
 The analysis identified meaningful differences in observed churn across geography, age, activity status, and product ownership. The findings provide a practical segmentation framework for prioritizing retention investigations. The heuristic risk score is a screening tool rather than a validated predictive model, and future work should include out-of-sample validation and intervention testing.
+
+<a id="author"></a>
 
 ## 👤 Author
 
