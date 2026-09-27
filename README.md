@@ -20,7 +20,7 @@ Business analytics project using SQL, Power BI, and DAX to analyze customer chur
 - [Methodology](#-methodology)
 - [Dashboards](#-dashboards)
 - [Key Insights](#-key-insights)
-- [Risk Scoring Model](#-risk-scoring-model)
+- [Heuristic Risk Scoring Model](#-risk-scoring-model)
 - [SQL Analysis Highlights](#-sql-analysis-highlights)
 - [Strategic Recommendations](#-strategic-recommendations)
 - [Conclusion](#-conclusion)
@@ -94,17 +94,17 @@ The data is modeled as **7 relational tables** (star-schema style) with zero mis
 ## 📊 Dashboards
 
 ### Dashboard 1 — Customer Demographics
-![Customer Demographics Dashboard](images/dashboard-1-customer-demographics.png)
+![Customer Demographics Dashboard](dashboard-1-customer-demographics.png)
 
 Profiles the 10,000-customer base by gender, age bucket, geography, salary, and tenure, and inspects the salary-vs-credit-score relationship.
 
 ### Dashboard 2 — Product Engagement
-![Product Engagement Dashboard](images/dashboard-2-product-engagement.png)
+![Product Engagement Dashboard](dashboard-2-product-engagement.png)
 
 Examines credit card penetration (70.55%), product holding distribution, active vs. inactive split, and how credit card ownership and product count relate to churn.
 
 ### Dashboard 3 — Churn Analysis
-![Churn Analysis Dashboard](images/dashboard-3-churn-analysis.png)
+![Churn Analysis Dashboard](dashboard-3-churn-analysis.png)
 
 Breaks down the 20.37% churn rate by gender, location, salary bucket, tenure, and credit score, with an exit-category summary.
 
