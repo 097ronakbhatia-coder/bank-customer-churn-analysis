@@ -20,7 +20,7 @@ Business analytics project using SQL, Power BI, and DAX to analyze customer chur
 - [Methodology](#-methodology)
 - [Dashboards](#-dashboards)
 - [Key Insights](#-key-insights)
-- [Heuristic Risk Scoring Model](#-risk-scoring-model)
+- [Heuristic Risk Scoring Model](#-heuristic-risk-scoring-model)
 - [SQL Analysis Highlights](#-sql-analysis-highlights)
 - [Strategic Recommendations](#-strategic-recommendations)
 - [Conclusion](#-conclusion)
